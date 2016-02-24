@@ -2,13 +2,17 @@ Template.view.onCreated(function () {
     var self = this;
     self.currentArticle = new ReactiveVar(false);
 
+    /***** moment.js 메서드를 1초마다 호출하기 위해 setInterval 선언 *****/
     this.localtime = new ReactiveVar(0);
     this.interval = Meteor.setInterval(function () {
         self.localtime.set(Random.id());
     }, 1000);
 
+    /***** 서버에서 20개씩 끊어서 데이터 가져오기 위해 *****/
     self.limit = 20;
     self.commentsLimit = new ReactiveVar(this.limit);
+
+    /***** 스크롤 위치 저장 *****/
     self.previousScrollTop = new ReactiveVar(0);
 
 
@@ -20,6 +24,7 @@ Template.view.helpers({
     currentArticle: function() {
         return Template.instance().currentArticle.get();
     },
+    /***** moment.js 사용하여 '일분 전', '한시간 전'과 같이 출력하기 - 1초마다 호출됨 *****/
     timeAgo: function (time) {
         moment.locale('ko');
         return Template.instance().localtime.get() && moment(time).fromNow();
@@ -246,10 +251,7 @@ Template.view.events({
     },
     "click #comment-submit" : function (e, t) {
         e.preventDefault();
-/*
-        var ratingSympathy = $("#rating-sympathy").data('userrating');
-        var ratingRecommend = $("#rating-recommend").data('userrating');
-*/
+
         var ratingSympathy = t.curSympathyStars.get();
         var ratingRecommend = t.curRecommendStars.get();
 

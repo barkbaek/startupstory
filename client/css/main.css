@@ -501,27 +501,6 @@ pre {
     }
 }
 
-/*
-#admin-body .chat {
-    display: block;
-    max-width: 550px;
-    margin: 20px auto 10px auto;
-    border: 1px solid #afafaf;
-    padding: 10px;
-    text-align: left;
-}
-#admin-body .header {
-    max-width: 550px;
-    margin: 0 auto 0 0;
-    text-align: left;
-}
-
-#admin-body #admin-check-form {
-    max-width: 550px;
-    margin: 0 auto 0 0;
-}
-*/
-
 #admin-submit {
     color: white;
 }
