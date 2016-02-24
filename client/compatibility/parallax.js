@@ -1,4 +1,5 @@
 /***** 홈에서 사진 고정되는 효과 위해 parallax.js 삽입 *****/
+
 ;(function ($, window, document, undefined) {
 
     // Polyfill for requestAnimationFrame
