@@ -1,0 +1,14 @@
+<template name="layout">
+    {{> sAlert}}
+
+    {{> Template.dynamic template=content data=data}}
+    <div id="footer">
+        <div>
+            <div style="margin-bottom: 20px;">
+                <span style=""><a style="color:white;" href="/about">About</a></span>
+                <span style="margin-left:30px;"><a style="color:white;" href="/contact">Contact</a></span>
+            </div>
+            Copyright &copy; 2015 PatienceValley. All rights reserved.
+        </div>
+    </div>
+</template>

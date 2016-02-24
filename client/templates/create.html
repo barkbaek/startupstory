@@ -1,0 +1,75 @@
+<template name="create">
+    <div id="navbar">
+        <a href="/">
+            <div id="navbar-left"></div>
+            <div id="menu">끈기의계곡</div>
+        </a>
+        {{#if currentUser}}
+            <div id="right-logout">로그아웃</div>
+        {{else}}
+            <div id="right-login">
+                <a href="/login" style="text-decoration:none; color: white;">
+                    로그인
+                </a>
+            </div>
+        {{/if}}
+    </div>
+    <div id="create-body">
+        <div id="public-type">
+            <div id="closed">
+                정보 비공개
+            </div>
+            <div id="opened">
+                정보 공개
+            </div>
+        </div>
+        <div id="type-check">
+            <div class="type-check-line">
+                <strong>창업 연도/연차</strong>
+                <span class="type-check-span-green">필수</span>
+                <span class="type-check-span-green">공개</span>
+                <input id="create-year" tabindex="0"  placeholder="예) 2014년/1년차">
+            </div>
+            <div class="type-check-line">
+                <strong>업 종</strong>
+                <span class="type-check-span-green">필수</span>
+                <span class="type-check-span-green">공개</span>
+                <input id="create-type" tabindex="0"  placeholder="예) IT 회사">
+            </div>
+            <div class="type-check-line">
+                <strong>회사 이름</strong>
+                <span class="type-check-span-green">필수</span>
+                {{#unless isPublic}}
+                    <span class="type-check-span-red">비공개</span>
+                {{else}}
+                    <span class="type-check-span-green">공개</span>
+                {{/unless}}
+                <input id="create-company-name" tabindex="0" placeholder="예) Patience Valley">
+            </div>
+            <div class="type-check-line">
+                <strong>실 명</strong>
+                <span class="type-check-span-green">필수</span>
+                {{#unless isPublic}}
+                    <span class="type-check-span-red">비공개</span>
+                {{else}}
+                    <span class="type-check-span-green">공개</span>
+                {{/unless}}
+                <input id="create-name" tabindex="0" placeholder="예) 홍길동">
+            </div>
+            <div style="margin-top: 50px;"></div>
+            <div class="type-check-line">
+                <strong>제 목</strong>
+                <span class="type-check-span-green">필수</span>
+                <span class="type-check-span-green">공개</span>
+                <input id="create-title" tabindex="0" placeholder="제목을 입력하세요.">
+            </div>
+            <div class="type-check-line">
+                <strong>내 용</strong>
+                <span class="type-check-span-green">필수</span>
+                <span class="type-check-span-green">공개</span>
+                <textarea id="create-content" tabindex="0" placeholder="내용을 입력하세요."></textarea>
+            </div>
+            <div id="create-submit">등록하기</div>
+        </div>
+    </div>
+</template>

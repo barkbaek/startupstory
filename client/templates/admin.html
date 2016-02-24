@@ -1,0 +1,63 @@
+<template name="admin">
+    <div id="navbar">
+        <a href="/">
+            <div id="navbar-left"></div>
+            <div id="menu">끈기의계곡</div>
+        </a>
+        {{#if currentUser}}
+            <div id="right-logout">로그아웃</div>
+        {{else}}
+            <div id="right-login">
+                <a href="/login" style="text-decoration:none; color: white;">
+                    로그인
+                </a>
+            </div>
+        {{/if}}
+    </div>
+
+    <div id="admin-body">
+        <div id="admin-body-left">
+            <form id="admin-check-form">
+                <input id="password" type="password" placeholder="비밀번호">
+                <input id="admin-submit" type="submit" value="관리자 로그인">
+            </form>
+            {{#if iamadmin}}
+            <div class="header">
+                <h3 style="text-align: center;">관리자에게 문의 요청 목록</h3>
+                {{#each listInquiries}}
+                    <div class="usernames" style="padding:10px; cursor:pointer; background: #ffc229; color: white;">{{this}}</div>
+                    <hr>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+
+        {{#if iamadmin}}
+        <div id="admin-body-right">
+            {{#each listSingleInquries}}
+                {{#if from}}
+                    <div style="text-align: right; margin-bottom: 10px;">
+                        <div style="padding-left: 25%;">
+                            <div style="padding-right: 12px; font-weight: bolder;">{{username}} <span class="check-to-true" style="width:50px;background-color:green;color: white; cursor:pointer;">체크하기</span></div>
+                            <pre class="contact-pre" style="text-align: right; {{changeColor checked}}">{{msg}}</pre>
+                            <span style="padding-right:12px; color:grey;font-size:14px;">{{timeAgo createdAt}}</span>
+                        </div>
+                    </div>
+                {{else}}
+                    <div style="text-align: left;margin-bottom: 10px;">
+                        <div style="padding-right: 25%;">
+                            <strong style="margin-left: 12px;">관리자</strong>
+                            <pre class="contact-pre" style="color: green;">{{msg}}</pre>
+                            <span style="padding-left:12px; color:grey;font-size:14px;">{{timeAgo createdAt}}</span>
+                        </div>
+                    </div>
+                {{/if}}
+            {{/each}}
+            <form id="touser">
+                <textarea id="admin-textarea" tabindex="0" placeholder="내용을 입력하세요."></textarea>
+                <div id="create-submit">사용자에게 답장하기</div>
+            </form>
+        </div>
+        {{/if}}
+    </div>
+</template>

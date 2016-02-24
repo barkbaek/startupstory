@@ -1,0 +1,130 @@
+<template name="view">
+    <div id="navbar">
+        <a href="/">
+            <div id="navbar-left"></div>
+            <div id="menu">끈기의계곡</div>
+        </a>
+        {{#if currentUser}}
+            <div id="right-logout">로그아웃</div>
+        {{else}}
+            <div id="right-login">
+                <a href="/login" style="text-decoration:none; color: white;">
+                    로그인
+                </a>
+            </div>
+        {{/if}}
+    </div>
+    
+
+    {{#with currentArticle}}
+        <div id="create-body">
+            <div class="header">
+                <h1><span style="color: #ff5729;">게시물</span> 보기</h1>
+                <hr>
+                <div><strong><h3>{{title}}</h3></strong></div>
+            </div>
+
+            <div id="type-check">
+                <div class="type-check-line" style="text-align: right;">
+                    <div style="font-size:14px;"><strong>조회 수 : {{count}}</strong></div>
+                </div>
+                <div class="type-check-line" style="text-align: right;">
+                    <div style="font-size:12px; color:grey;">{{timeAgo createdAt}}</div>
+                </div>
+
+                <div style="margin-bottom:20px; margin-left:5px;">
+                    <strong>
+                        공감도&nbsp;&nbsp;<div class="stars" style="position:relative;">{{avgSympathyInteger totalSympathy totalCommenters}}</div>&nbsp;&nbsp;{{avgSympathyFloat totalSympathy totalCommenters}}<br>
+                        추천도&nbsp;&nbsp;<div class="stars" style="position:relative;">{{avgRecommendInteger totalRecommend totalCommenters}}</div>&nbsp;&nbsp;{{avgRecommendFloat totalRecommend totalCommenters}}
+                    </strong>
+                </div>
+
+                <div class="type-check-line" style="margin-left:5px;">
+                    <strong>창업 연도/연차</strong>
+
+                    <div>{{year}}</div>
+                </div>
+                <div class="type-check-line" style="margin-left:5px;">
+                    <strong>업 종</strong>
+
+                    <div>{{type}}</div>
+                </div>
+                {{#if companyName}}
+                    <div class="type-check-line" style="margin-left:5px;">
+                        <strong>회사 이름</strong>
+
+                        <div>{{companyName}}</div>
+                    </div>
+                {{/if}}
+                {{#if name}}
+                    <div class="type-check-line" style="margin-left:5px;">
+                        <strong>실 명</strong>
+
+                        <div>{{name}}</div>
+                    </div>
+                {{/if}}
+
+                <div class="type-check-line" style="margin-bottom: 30px;">
+                    <pre>{{content}}</pre>
+                </div>
+
+                <div style="margin-top: 60px;"></div>
+
+                <div id="facebook-share">
+                    <img style="vertical-align:middle;" width="30" height="30"
+                         src="http://res.cloudinary.com/diwq9gfgo/image/upload/v1449591218/1449479796_Facebook_hqomne.png">
+                    <span>페이스북에 공유하기</span>
+                </div>
+
+                <div style="margin-top: 60px;"></div>
+
+                {{#if totalCommenters}}
+                    <hr>
+                    <div style="margin-top: 30px;"></div>
+                    <h2>힘 보태주는 사람들</h2>
+                    <div style="margin-top: 60px;"></div>
+                {{/if}}
+                {{#each listComments}}
+                    <div style="width: 100%;">
+                        <div class="lines">
+                            <div style="font-size:12px; color:grey; float: right;">{{timeAgo createdAt}}</div>
+                            <h3>{{username}}</h3>
+                        </div>
+                        <div class="lines">
+                            <strong>완전 내 심정</strong>&nbsp;&nbsp;<div class="stars" style="position:relative;">{{avgSympathyInteger sympathy 1}}</div>
+                        </div>
+                        <div class="lines">
+                            <strong>이건 꼭 추천</strong>&nbsp;&nbsp;<div class="stars" style="position:relative;">{{avgRecommendInteger recommend 1}}</div>
+                        </div>
+                        <div class="lines">
+                            <pre>{{comment}}</pre>
+                        </div>
+                    </div>
+                    <hr>
+                {{/each}}
+                {{#if more}}
+                    <div id="more-li">
+                        <div id="more">더 보기</div>
+                    </div>
+                {{/if}}
+            </div>
+
+            {{#if otherUsers}}
+                <div style="margin-top: 60px;"></div>
+                <div id="comment-container">
+                    <h2>힘 보태주기</h2>
+
+                    <div class="lines">
+                        <strong>완전 내 심정</strong>&nbsp;&nbsp;<div class="stars" style="position:relative;">{{sympathyStars}}</div>
+                    </div>
+                    <div class="lines">
+                        <strong>이건 꼭 추천</strong>&nbsp;&nbsp;<div class="stars" style="position:relative;">{{recommendStars}}</div>
+                    </div>
+
+                    <textarea id="create-comment" tabindex="0" placeholder="글쓴이에게 힘을 실어주세요. (주의 : 단 한번만 등록 가능합니다.)"></textarea>
+                    <div id="comment-submit">등록하기</div>
+                </div>
+            {{/if}}
+        </div>
+    {{/with}}
+</template>

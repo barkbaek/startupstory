@@ -1,0 +1,900 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body {
+    margin: 0;
+    font-family: 'Nanum Gothic', serif;
+    background-color: #fafafa;
+    overflow-x: hidden;
+}
+
+.s-alert-box {
+    font-size: 14px;
+}
+
+textarea {
+    overflow: hidden;
+    -ms-overflow-x: hidden;
+    -ms-overflow-y: hidden;
+    min-height: 250px;
+}
+
+input[type="submit"], input[type="reset"] {
+    background: none repeat scroll 0 0 #ff5729;
+    border: medium none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 7px;
+    text-transform: uppercase;
+    font: inherit;
+}
+
+input {
+    font: inherit;
+    margin: 5px 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="checkbox"], label {
+    width: auto;
+    cursor: pointer;
+    text-align: left;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+pre {
+    font: inherit;
+    text-align: left;
+
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 16px;
+    border: 1px solid #bdbdbd;
+    background: white;
+
+    overflow: hidden;
+    -ms-overflow-x: hidden;
+    -ms-overflow-y: hidden;
+
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+/* layout */
+#navbar {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    background: #ff5729;
+    border-bottom: 1px solid #f53500;
+    border-top: 1px solid #f53500;
+}
+
+#navbar #navbar-left {
+    margin-top: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('http://res.cloudinary.com/remotecontrol/image/upload/v1450092982/direction196_ul2xsv.png') no-repeat center;
+    cursor: pointer;
+}
+
+#navbar #menu {
+    display: inline-block;
+    padding-left: 0;
+    margin-left: 5px;
+    margin-top: 10px;
+
+    vertical-align: top;
+
+    color: white;
+    font-size: 22px;
+    font-weight: bolder;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
+#navbar #right-logout,
+#navbar #right-login {
+    float: right;
+    margin-top: 15px;
+    margin-right: 10px;
+
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+#navbar #right:after {
+    clear:both;
+}
+
+.parallax-window {
+    min-height: 400px;
+    background: transparent;
+}
+
+
+
+/* 템플릿 front */
+#front-head {
+    position: absolute;
+    color: #ff5729;
+    top: 120px;
+    left: 50%;
+    margin-left: -165px;
+    font-size: 50px;
+    font-weight: bolder;
+}
+
+#front-head-intro {
+    position: absolute;
+    color: #ff5729;
+    top: 190px;
+    left: 50%;
+    margin-left: -135px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+#front-search-input {
+    position: absolute;
+    border: 1px solid #ff5729;
+    top: 260px;
+    left: 50%;
+    margin-left: -160px;
+    width:  320px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#front-body-intro,
+#login-body,
+#register-body {
+    padding: 20px;
+    margin: auto;
+    color: white;
+    font-size: 18px;
+    font-weight: 300;
+    background: #ff5729;
+    border-top: 1px solid #ff5729;
+    text-align: center;
+    line-height: 30px;
+}
+
+.how-to-use {
+    font-size: 16px;
+    max-width: 600px;
+    margin: auto;
+}
+
+#login-body,
+#register-body {
+    margin: auto;
+    background: white;
+    border-top: 0;
+}
+
+#login-body h1,
+#register-body h1 {
+    color: black;
+    margin: 40px auto;
+}
+
+#front-logout {
+    max-width: 200px;
+    margin: 20px auto 10px auto;
+    background: #ff1018;
+    border: 1px solid #f60008;
+    cursor: pointer;
+}
+
+#front-logout:hover {
+    background: #dc0007;
+}
+
+#front-create-article {
+    max-width: 200px;
+    margin: 20px auto 10px auto;
+    background: #06c800;
+    border: 1px solid #06c800;
+    cursor: pointer;
+}
+
+
+
+#front-create-article-a {
+    color: white;
+    text-decoration: none;
+}
+
+#front-create-article:hover {
+    background: #06b500;
+}
+
+#front-login-or-register {
+    max-width: 450px;
+    margin: 20px auto 10px auto;
+}
+
+#front-login-or-register div {
+    display: inline-block;
+    width: 45%;
+    margin: 0;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+}
+
+#front-login-or-register #change-to-login {
+    background: #ffc229;
+}
+
+#front-login-or-register #change-to-register {
+    background: #2966ff;
+}
+
+#front-login,
+#front-register {
+    max-width: 450px;
+    margin: 20px auto 10px auto;
+}
+
+#front-register-username,
+#front-register-password {
+    border: 1px solid #2966ff;
+}
+
+#front-login-username,
+#front-login-password {
+    border: 1px solid #ffc229;
+}
+
+#front-login-submit {
+    border-radius: 0;
+    background: #ffc229;
+    border: 1px solid #ffc229;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+#front-register-submit {
+    border-radius: 0;
+    background: #2966ff;
+    border: 1px solid #2966ff;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    margin: 5px 0;
+    padding: 5px;
+}
+
+#front-login-submit:hover {
+    background: #ffc229;
+}
+
+#front-register-submit:hover {
+    background: #2966ff;
+}
+
+#front-body-sort {
+    padding: 20px;
+    background: #ff8c29;
+}
+
+#front-body-sort-days {
+    margin: auto;
+    padding-left: 0;
+    text-align: center;
+}
+
+#front-body-sort-days li {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bolder;
+    background: #f57100;
+    border: 1px solid #c35a00;
+    margin: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+#front-body-sort-days li:hover {
+    background: #ffb576;
+}
+
+#front-body-sort-days li.selected {
+    background: #c35a00;
+}
+
+.list-articles {
+    margin: 10px auto;
+    max-width: 800px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bolder;
+    padding: 0;
+}
+
+.list-articles li {
+    display: block;
+    border-top: 1px solid #c35a00;
+    background-color: white;
+    margin: 0;
+    padding: 20px 12px;
+    line-height: 25px;
+
+    word-wrap: break-word;
+    word-break: break-all;
+    cursor: pointer;
+}
+
+.list-right {
+    float:right;
+    margin-left: 10px;
+    margin-top: -16px;
+    text-align: right;
+}
+
+.time-ago {
+    font-size: 12px;
+    color: darkgrey;
+
+}
+
+.count {
+    font-size: 14px;
+    color: darkblue;
+    font-weight: bolder;
+}
+
+.list-articles li#more-li,
+.list-articles li#more-li2 {
+    padding: 0;
+}
+
+#more,
+#more2 {
+    width: 100%;
+    padding: 6px 0;
+    background: #ffc229;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    margin: 0;
+
+    border-top: 0;
+    border-bottom: 0;
+
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+
+#footer {
+    padding: 30px 20px;
+    margin: auto;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    background: #ff5729;
+    border-top: 1px solid #ff5729;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .parallax-window {
+        min-height: 200px;
+    }
+
+    #front-head {
+        top: 45px;
+        font-size: 36px;
+        margin-left: -119px;
+    }
+
+    #front-head-intro {
+        top: 95px;
+        font-size: 22px;
+        margin-left: -99px;
+    }
+
+    #front-search-input {
+        top: 122px;
+        margin-left: -100px;
+        width: 200px;
+        font-size: 16px;
+    }
+
+    #front-body-intro,
+    #login-body,
+    #register-body {
+        font-size: 16px;
+    }
+
+    .how-to-use {
+        font-size: 14px;
+    }
+
+    #front-body-sort-days li {
+        font-size: 16px;
+        margin:5px;
+    }
+
+    #footer {
+        font-size: 12px;
+    }
+}
+
+.mobile {
+    display: none;
+}
+
+@media (max-width: 772px) {
+    .mobile {
+        display: block;
+    }
+}
+
+/* 템플릿 admin */
+
+#admin-body {
+    margin: 20px auto;
+    padding: 40px 20px;
+    text-align: center;
+    vertical-align: top;
+    max-width: 1000px;
+}
+
+#admin-body-left {
+    width: 40%;
+    display: inline-block;
+}
+
+#admin-body-right {
+    width: 59%;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid black;
+}
+
+#admin-body h1 {
+    margin: auto;
+}
+
+@media (max-width: 767px) {
+    #admin-body-left {
+        width: 100%;
+    }
+
+    #admin-body-right {
+        width: 100%;
+    }
+}
+
+/*
+#admin-body .chat {
+    display: block;
+    max-width: 550px;
+    margin: 20px auto 10px auto;
+    border: 1px solid #afafaf;
+    padding: 10px;
+    text-align: left;
+}
+#admin-body .header {
+    max-width: 550px;
+    margin: 0 auto 0 0;
+    text-align: left;
+}
+
+#admin-body #admin-check-form {
+    max-width: 550px;
+    margin: 0 auto 0 0;
+}
+*/
+
+#admin-submit {
+    color: white;
+}
+
+form#programs-add {
+    min-width: 100px;
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    border: 1px solid #dbdbdb;
+    padding: 10px;
+}
+
+#show-values {
+    background: none repeat scroll 0 0 #ff5729;
+    border: medium none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 7px;
+    text-transform: uppercase;
+    color: white;
+}
+
+
+/* 템플릿 create */
+#create-body {
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#create-body h1 {
+    margin: auto;
+}
+
+#create-body .header {
+    max-width: 550px;
+    margin: auto;
+    text-align: left;
+}
+
+#public-type {
+    max-width: 450px;
+    margin: 20px auto 10px auto;
+    text-align: center;
+}
+
+#public-type div {
+    display: inline-block;
+    width: 45%;
+    margin: 0;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+#public-type #closed {
+    background: #ff1018;
+}
+
+#public-type #closed:hover {
+    background: #dc0007;
+}
+
+#public-type #opened {
+    background: #06c800;
+}
+
+#public-type #opened:hover {
+    background: #049500;
+}
+
+#type-check {
+    display: block;
+    max-width: 550px;
+    margin: 20px auto 10px auto;
+    border: 1px solid #afafaf;
+    padding: 10px;
+    text-align: left;
+}
+
+.type-check-span-red {
+    background: red;
+    padding: 5px;
+    display: inline-block;
+    color: white;
+    font-size: 8px;
+    vertical-align: middle;
+}
+
+.type-check-span-green {
+    background: green;
+    padding: 5px;
+    display: inline-block;
+    color: white;
+    font-size: 8px;
+    vertical-align: middle;
+}
+
+.type-check-line {
+    vertical-align: middle;
+    margin: 10px 0;
+}
+
+.type-check-line textarea {
+    font: inherit;
+    margin: 5px 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #bdbdbd;
+
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+#create-submit {
+    border-radius: 0;
+    background: green;
+    border: 1px solid darkgreen;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    margin: 5px 0;
+    text-align: center;
+    padding: 5px;
+}
+
+#create-submit:hover {
+    background: darkgreen;
+}
+
+/* 템플릿 view */
+.type-check-line pre {
+    margin-top: 5px;
+}
+
+#facebook-share {
+    border: 1px solid #bdbdbd;
+    border-radius: 10px;
+    font-size: 14px;
+    vertical-align: middle;
+    margin: auto;
+    max-width:170px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#comment-container {
+    display: block;
+    max-width: 550px;
+    margin: 20px auto 10px auto;
+    border: 1px solid #afafaf;
+    padding: 10px;
+    text-align: left;
+}
+
+#comment-container h2 {
+    text-align: center;
+}
+
+#comment-container .lines {
+    margin-bottom: 6px;
+}
+
+#create-comment {
+    font: inherit;
+    margin: 5px 0;
+    min-height: 150px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #bdbdbd;
+
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+#comment-submit {
+    border-radius: 0;
+    background: #ff5729;
+    border: 1px solid  #ff5729;
+    font-weight: bolder;
+    color: white;
+    cursor: pointer;
+    margin: 5px 0;
+    text-align: center;
+    padding: 5px;
+}
+
+#type-check h2 {
+    text-align: center;
+}
+
+/* rating 관련 css */
+.stars {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.stars > span {
+    display: inline-block;
+    font-size: 22px;
+    color: #06c800;
+    margin: 0 -3px;
+}
+
+
+/* 템플릿 about */
+#about-body {
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#about-body h1 {
+    margin: auto;
+}
+
+#about-body .header {
+    max-width: 550px;
+    margin: auto;
+    text-align: center;
+}
+
+.about-nav {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+    font-size: 20px;
+    margin: 40px;
+    cursor: pointer;
+}
+
+.about-nav:hover {
+    background-color: red;
+}
+
+@media (max-width: 520px) {
+    .about-nav {
+        font-size: 16px;
+        margin: 22px;
+    }
+}
+
+@media (max-width: 400px) {
+    .about-nav {
+        margin: 12px;
+    }
+}
+
+#intro, #rules, #tips {
+    text-align: left;
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+    line-height: 30px;
+}
+
+.questions {
+    background-color: #ffc229;
+    color: white;
+    padding: 5px 10px;
+    border: 1px solid #f5af00;
+    margin: 0;
+}
+
+.answers {
+    padding: 5px 10px;
+    margin: 0;
+    border-right : 1px solid #f5af00;
+    border-left : 1px solid #f5af00;
+}
+
+#intro h2,
+#rules h2 {
+    text-align: center;
+}
+
+.rules-title {
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.rules-content {
+    margin-bottom: 25px;
+}
+
+/* 템플릿 contact */
+#contact-body {
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#contact-body h1 {
+    margin: auto;
+}
+
+#contact-body .chat {
+    display: block;
+    max-width: 550px;
+    margin: 20px auto 10px auto;
+    border: 1px solid #afafaf;
+    padding: 10px;
+    text-align: left;
+}
+#contact-body .header {
+    max-width: 550px;
+    margin: auto;
+    text-align: left;
+}
+
+#contact-body textarea,
+#admin-body textarea {
+    font: inherit;
+    margin: 5px 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #bdbdbd;
+    min-height: 100px;
+
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.contact-pre {
+    background: none;
+    border: 0;
+    line-height: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 2px;
+    padding-bottom: 0;
+}
+
+#contact-more {
+    width: 100%;
+    padding: 6px 0;
+    background: lightgrey;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bolder;
+    color: black;
+    cursor: pointer;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    margin: 0;
+
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}

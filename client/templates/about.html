@@ -1,0 +1,81 @@
+<template name="about">
+    <div id="navbar">
+        <a href="/">
+            <div id="navbar-left"></div>
+            <div id="menu">끈기의계곡</div>
+        </a>
+        {{#if currentUser}}
+            <div id="right-logout">로그아웃</div>
+        {{else}}
+            <div id="right-login">
+                <a href="/login" style="text-decoration:none; color: white;">
+                    로그인
+                </a>
+            </div>
+        {{/if}}
+    </div>
+    <div id="about-body">
+        <div class="header">
+            <h1><span style="color: #ff5729;">끈기의계곡</span> 이란 ?</h1>
+            <div style="font-size: 12px; text-align: center; background-color: #ff5729; padding: 5px 10px; margin-top: 20px;">
+                <span><a href="#intro" class="about-nav">Intro</a></span>
+                <span><a href="#rules" class="about-nav">Rules</a></span>
+                <span><a href="#tips" class="about-nav">Tips</a></span>
+            </div>
+            <div id="intro">
+                당신은 리더입니까?<br>
+                리더라는 이유로 털어 놓지 못한 <span style="font-size: 18px; font-weight: bolder; color:red;"><strong>고민</strong></span>들이 있습니까?<br><br>
+                <div style="text-align: center; font-weight: bolder;font-size:24px;">창업가도 사람입니다.</div><br>
+                당신의 <span style="font-size: 18px; font-weight: bolder; color:green;"><strong>휴게소</strong></span>같은 친구가 되어 드리겠습니다.<br>
+                반갑습니다. <span style="font-size: 24px; font-weight: bolder; color: #ff5729;"><strong>끈기의계곡</strong></span> 입니다. ^^<br>
+                <br>
+            </div>
+
+            <div id="rules">
+                <div class="rules-title">
+                    1) 서로에게 예의를 지킨다.
+                </div>
+                <div class="rules-content">
+                    이 글을 읽고 계신 당신! 예의가 바른 분이라는 것을 알고 있습니다.<br>
+                    평상시대로 해주시면 됩니다.
+                </div>
+                <div class="rules-title">
+                    2) 고유명사는 알파벳으로 대체한다.
+                </div>
+                <div class="rules-content">
+                    회사 이름, 실명 등은 알파벳 A - Z로 대체해서 사용해주세요.<br>
+                </div>
+            </div>
+            <div id="tips">
+                <div class="questions">
+                    <strong>질문)</strong> 관리자님에게 문의드릴 것이 있어요.
+                </div>
+                <div class="answers">
+                    <strong>답변)</strong> 로그인 후, 하단에 'Contact'를 클릭하여 문의하시면 됩니다.
+                </div>
+                <div class="questions">
+                    <strong>질문)</strong> 글은 어떻게 게시하나요?
+                </div>
+                <div class="answers">
+                    <strong>답변)</strong> 로그인 후, 메인 페이지에서 '글 게시하기'를 클릭하시면 됩니다.
+                </div>
+
+                <div class="questions">
+                    <strong>질문)</strong> 게시 글에 너무 공감해요. 작성자에게 힘을 주고 싶어요.
+                </div>
+                <div class="answers">
+                    <strong>답변)</strong> '힘 보태주기'에 공감하는 만큼 '완전 내 심정' 별점을, 추천하고 싶은 만큼 '이건 꼭 추천' 별점을 매기고, 작성자에게 힘을 실어주세요.<br>
+                    <span style="color: red;">한 번만 등록 가능하다는 점에 주의하세요!</span>
+                </div>
+
+                <div class="questions">
+                    <strong>질문)</strong> 회원 탈퇴는 어떻게 하나요?
+                </div>
+                <div class="answers" style="border-bottom: 1px solid #f5af00;">
+                    <strong>답변)</strong> 로그인 후, 하단에 'Contact' - '회원탈퇴'를 클릭하시면 됩니다.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</template>
