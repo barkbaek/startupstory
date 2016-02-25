@@ -15,12 +15,14 @@ Template.view.onCreated(function () {
     /***** 스크롤 위치 저장 *****/
     self.previousScrollTop = new ReactiveVar(0);
 
-
+    /***** 댓글 입력 시, 사용자가 지정한 별점을 임시 저장 *****/
+    /***** curSympathyStars : 완전 내 심정, curRecommendStars : 이건 꼭 추천 *****/
     self.curSympathyStars = new ReactiveVar(5);
     self.curRecommendStars = new ReactiveVar(5);
 });
 
 Template.view.helpers({
+    /***** 현재 게시물 반환 *****/
     currentArticle: function() {
         return Template.instance().currentArticle.get();
     },
@@ -29,9 +31,7 @@ Template.view.helpers({
         moment.locale('ko');
         return Template.instance().localtime.get() && moment(time).fromNow();
     },
-    one: function () {
-        return 1.5;
-    },
+    /***** 현재 게시물을 보고 있는 사용자가 작성자가 아닐 경우 true 반환 *****/
     otherUsers: function () {
         var curUser = Meteor.user();
         var curArticle = Template.instance().currentArticle.get();
@@ -45,6 +45,7 @@ Template.view.helpers({
             }
         }
     },
+    /***** 댓글 목록을 최신순으로 반환 *****/
     listComments: function () {
         return Comments.find(
             {
@@ -57,9 +58,11 @@ Template.view.helpers({
             }
         );
     },
+    /***** 댓글이 더 존재할 경우 'more' 바 보이기 *****/
     more: function () {
         return Template.instance().commentsLimit.get() <= Comments.find({}).count();
     },
+    /***** 현재 게시물에 대한 평균 공감도(완전 내 심정)를 정수로 계산하여 별점으로 변환 후 반환 *****/
     avgSympathyInteger: function (sympathy, commenters) {
         var val = Math.round(sympathy / commenters);
 
@@ -85,6 +88,7 @@ Template.view.helpers({
         }
 
     },
+    /***** 현재 게시물에 대한 평균 추천도(이건 꼭 추천)를 정수로 계산하여 별점으로 변환 후 반환 *****/
     avgRecommendInteger: function (recommend, commenters) {
         var val = Math.round(recommend / commenters);
 
@@ -109,6 +113,7 @@ Template.view.helpers({
                     "<span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span> <span>&#9734;</span>");
         }
     },
+    /***** 현재 게시물에 대한 평균 공감도(완전 내 심정)를 소수점 두 자리 실수로 계산 후 반환 *****/
     avgSympathyFloat: function (sympathy, commenters) {
         var result = sympathy / commenters;
         console.log(result);
@@ -116,10 +121,12 @@ Template.view.helpers({
         return isNaN(result) ? "" : result.toFixed(2);
 
     },
+    /***** 현재 게시물에 대한 평균 추천도(이건 꼭 추천)를 소수점 두 자리 실수로 계산 후 반환 *****/
     avgRecommendFloat: function (recommend, commenters) {
         var result = recommend / commenters;
         return isNaN(result) ? "" : result.toFixed(2);
     },
+    /***** 현재 댓글다는 사용자가 선택한 공감도(완전 내 심정)를 별점으로 변환 후 반환 *****/
     sympathyStars: function () {
         var curSympathyStars = Template.instance().curSympathyStars.get();
 
@@ -144,6 +151,7 @@ Template.view.helpers({
                     "<span id='sympathy-one'>&#9733;</span> <span id='sympathy-two'>&#9733;</span> <span id='sympathy-three'>&#9733;</span> <span id='sympathy-four'>&#9733;</span> <span id='sympathy-five'>&#9733;</span>");
         }
     },
+    /***** 현재 댓글다는 사용자가 선택한 추천도(이건 꼭 추천)를 별점으로 변환 후 반환 *****/
     recommendStars: function () {
         var curRecommendStars = Template.instance().curRecommendStars.get();
 
@@ -173,6 +181,7 @@ Template.view.helpers({
 Template.view.onRendered(function () {
     var self = this;
 
+    /***** 서버에게 현재 게시물 정보 요청 후 가져오기 *****/
     Meteor.call("viewArticle", this.data, function (err, res) {
         if (!err) {
             self.currentArticle.set(res);
@@ -180,7 +189,9 @@ Template.view.onRendered(function () {
     });
 
     self.autorun(function () {
+        /***** 댓글 목록 가져오기 *****/
         self.subscribe("ListComments", self.data, self.commentsLimit.get(), function() {
+            /***** 템플릿(html 파일들) Flush된 후, 데이터 전송받기 전 스크롤 위치로 이동(즉, 데이터 전송받기 전 스크롤 위치 유지하기 위해 사용) *****/
             Tracker.afterFlush(function () {
                 $(window).scrollTop(
                     self.previousScrollTop.get()
@@ -189,8 +200,10 @@ Template.view.onRendered(function () {
         });
     });
 
+    /***** 현재 게시물 조회 수 1 증가 *****/
     Meteor.call("incCntOfArticle", this.data, function (err, res) {});
 
+    /***** 페이스북 공유하기 위해 사용 *****/
     window.fbAsyncInit = function() {
         FB.init({
             appId      : '',    // Use yours
@@ -212,6 +225,7 @@ Template.view.onRendered(function () {
 });
 
 Template.view.events({
+    /***** more 바 클릭 시, 현재 스크롤 위치 저장 및 댓글 최대 20개 더 가져오기 *****/
     "click #more" : function (e, t) {
         e.preventDefault();
 
@@ -221,11 +235,13 @@ Template.view.events({
 
         t.commentsLimit.set(newLimit);
     },
+    /***** 페이지 우측 상단에 로그아웃 클릭 시, 계정 로그아웃. *****/
     "click #right-logout" : function (e, t) {
         e.preventDefault();
 
         Meteor.logout();
     },
+    /***** '페이스북에 공유하기' 클릭 시, 현재 게시물 정보 공유하기 *****/
     "click #facebook-share" : function(e, t) {
         e.preventDefault();
 
@@ -249,6 +265,7 @@ Template.view.events({
             }
         });
     },
+    /***** '힘 보태주기' - '등록하기' 클릭 시, 서버에 해당 정보(현재 게시물 아이디, 공감도, 추천도, 댓글 내용) 전송 *****/
     "click #comment-submit" : function (e, t) {
         e.preventDefault();
 
@@ -307,6 +324,8 @@ Template.view.events({
             }
         );
     },
+
+    /***** '힘 보태주기'의 '완전 내 심정' 별점 클릭 시, 숫자로 변환하여 저장 *****/
     "click #sympathy-one": function (e, t) {
         e.preventDefault();
         t.curSympathyStars.set(1);
@@ -328,7 +347,7 @@ Template.view.events({
         t.curSympathyStars.set(5);
     },
 
-
+    /***** '힘 보태주기'의 '이건 꼭 추천' 별점 클릭 시, 숫자로 변환하여 저장 *****/
     "click #recommend-one": function (e, t) {
         e.preventDefault();
         t.curRecommendStars.set(1);
@@ -352,5 +371,6 @@ Template.view.events({
 });
 
 Template.view.onDestroyed(function () {
+    /***** clearInterval *****/
     Meteor.clearInterval(this.interval);
 });
